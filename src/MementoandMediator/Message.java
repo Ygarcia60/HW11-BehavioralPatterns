@@ -7,8 +7,8 @@ import java.util.List;
 public class Message {
     private final User sender;
     private final List<User> recipients;
-    private final LocalDateTime timestamp;
-    private final String content;
+    private  LocalDateTime timestamp;
+    private  String content;
 
     public Message(User sender, List<User> recipients, String content) {
         this.sender = sender;
@@ -28,5 +28,15 @@ public class Message {
     }
     public String getContent() {
         return content;
+    }
+    public MessageMemento save() {
+        return new MessageMemento(content, timestamp);
+    }
+    public void restore(MessageMemento snapshot) {
+        this.content = snapshot.getContent();
+        this.timestamp = snapshot.getTimestamp();
+    }
+    public void setContent(String content) {
+        this.content = content;
     }
 }
