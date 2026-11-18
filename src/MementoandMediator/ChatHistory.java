@@ -2,8 +2,9 @@ package MementoandMediator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
-public class ChatHistory {
+public class ChatHistory implements IterableByUser {
     private final List<Message> messages = new ArrayList<>();
 
     public void addMessage(Message message) {
@@ -18,6 +19,10 @@ public class ChatHistory {
             }
         }
         return null;
+    }
+    @Override
+    public Iterator<Message> iterator(User userToSearchWith) {
+        return new searchMessageByUser(getMessages(), userToSearchWith);
     }
     public List<Message> getMessages() {
         return new ArrayList<>(messages);

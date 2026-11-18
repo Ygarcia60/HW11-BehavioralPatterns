@@ -1,5 +1,6 @@
 package MementoandMediator;
 
+import java.util.Iterator;
 import java.util.List;
 public class MMDriver {
     public static void main(String[] args) {
@@ -34,6 +35,19 @@ public class MMDriver {
 
         printHistory(alice);
         printHistory(carol);
+
+        System.out.println(
+                "\nIterator part:=== Alice's messages involving Carol ===");
+
+        Iterator<Message> iterator = alice.iterator(carol);
+
+        while (iterator.hasNext()) {
+            Message message = iterator.next();
+
+            System.out.println(
+                    message.getSender().getName()
+                            + ": " + message.getContent());
+        }
     }
 
     public static void printHistory(User user) {

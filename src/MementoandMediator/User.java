@@ -1,8 +1,9 @@
 package MementoandMediator;
 
 import java.util.List;
+import java.util.Iterator;
 
-public class User {
+public class User implements IterableByUser {
     private final String name;
     private ChatServer server;
     private final ChatHistory history = new ChatHistory();
@@ -56,7 +57,11 @@ public class User {
         lastSentMessage = null;
         lastSentSnapshot = null;
     }
+    @Override
+    public Iterator<Message> iterator(User userToSearchWith) {
+        return history.iterator(userToSearchWith);
 
+    }
     public void receiveMessage(Message message) {
         history.addMessage(message);
     }
